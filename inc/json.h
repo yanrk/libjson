@@ -7,21 +7,21 @@
 #include <string>
 
 #ifdef _MSC_VER
-#define STUPID_CDECL           __cdecl
-#define STUPID_STDCALL         __stdcall
-#ifdef EXPORT_STUPID_DLL
-#define STUPID_API         __declspec(dllexport)
+    #define STUPID_CDECL           __cdecl
+    #define STUPID_STDCALL         __stdcall
+    #ifdef EXPORT_STUPID_DLL
+        #define STUPID_API         __declspec(dllexport)
+    #else
+        #ifdef USE_STUPID_DLL
+            #define STUPID_API     __declspec(dllimport)
+        #else
+            #define STUPID_API
+        #endif // USE_STUPID_DLL
+    #endif // EXPORT_STUPID_DLL
 #else
-#ifdef USE_STUPID_DLL
-#define STUPID_API     __declspec(dllimport)
-#else
-#define STUPID_API
-#endif // USE_STUPID_DLL
-#endif // EXPORT_STUPID_DLL
-#else
-#define STUPID_CDECL
-#define STUPID_STDCALL
-#define STUPID_API
+    #define STUPID_CDECL
+    #define STUPID_STDCALL
+    #define STUPID_API
 #endif // _MSC_VER
 
 class JsonImpl;
