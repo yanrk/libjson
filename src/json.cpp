@@ -131,6 +131,26 @@ bool Json::get_element(const char * element_name, bool & element_value)
     return(nullptr != m_json_impl && m_json_impl->get_element(element_name, element_value));
 }
 
+bool Json::get_element(const char * element_name, int8_t & element_value)
+{
+    return(nullptr != m_json_impl && m_json_impl->get_element(element_name, element_value));
+}
+
+bool Json::get_element(const char * element_name, uint8_t & element_value)
+{
+    return(nullptr != m_json_impl && m_json_impl->get_element(element_name, element_value));
+}
+
+bool Json::get_element(const char * element_name, int16_t & element_value)
+{
+    return(nullptr != m_json_impl && m_json_impl->get_element(element_name, element_value));
+}
+
+bool Json::get_element(const char * element_name, uint16_t & element_value)
+{
+    return(nullptr != m_json_impl && m_json_impl->get_element(element_name, element_value));
+}
+
 bool Json::get_element(const char * element_name, int32_t & element_value)
 {
     return(nullptr != m_json_impl && m_json_impl->get_element(element_name, element_value));
@@ -162,6 +182,26 @@ bool Json::get_element(const char * element_name, double & element_value)
 }
 
 bool Json::get_element(const char * element_name, std::list<bool> & element_value_list)
+{
+    return(nullptr != m_json_impl && m_json_impl->get_element(element_name, element_value_list));
+}
+
+bool Json::get_element(const char * element_name, std::list<int8_t> & element_value_list)
+{
+    return(nullptr != m_json_impl && m_json_impl->get_element(element_name, element_value_list));
+}
+
+bool Json::get_element(const char * element_name, std::list<uint8_t> & element_value_list)
+{
+    return(nullptr != m_json_impl && m_json_impl->get_element(element_name, element_value_list));
+}
+
+bool Json::get_element(const char * element_name, std::list<int16_t> & element_value_list)
+{
+    return(nullptr != m_json_impl && m_json_impl->get_element(element_name, element_value_list));
+}
+
+bool Json::get_element(const char * element_name, std::list<uint16_t> & element_value_list)
 {
     return(nullptr != m_json_impl && m_json_impl->get_element(element_name, element_value_list));
 }
@@ -201,6 +241,26 @@ bool Json::add_element(const char * element_name, bool element_value, bool as_st
     return(nullptr != m_json_impl && m_json_impl->add_element(element_name, element_value, as_string));
 }
 
+bool Json::add_element(const char * element_name, int8_t element_value, bool as_string)
+{
+    return(nullptr != m_json_impl && m_json_impl->add_element(element_name, element_value, as_string));
+}
+
+bool Json::add_element(const char * element_name, uint8_t element_value, bool as_string)
+{
+    return(nullptr != m_json_impl && m_json_impl->add_element(element_name, element_value, as_string));
+}
+
+bool Json::add_element(const char * element_name, int16_t element_value, bool as_string)
+{
+    return(nullptr != m_json_impl && m_json_impl->add_element(element_name, element_value, as_string));
+}
+
+bool Json::add_element(const char * element_name, uint16_t element_value, bool as_string)
+{
+    return(nullptr != m_json_impl && m_json_impl->add_element(element_name, element_value, as_string));
+}
+
 bool Json::add_element(const char * element_name, int32_t element_value, bool as_string)
 {
     return(nullptr != m_json_impl && m_json_impl->add_element(element_name, element_value, as_string));
@@ -232,6 +292,26 @@ bool Json::add_element(const char * element_name, double element_value, bool as_
 }
 
 bool Json::add_element(const char * element_name, const std::list<bool> & element_value_list, bool as_string)
+{
+    return(nullptr != m_json_impl && m_json_impl->add_element(element_name, element_value_list, as_string));
+}
+
+bool Json::add_element(const char * element_name, const std::list<int8_t> & element_value_list, bool as_string)
+{
+    return(nullptr != m_json_impl && m_json_impl->add_element(element_name, element_value_list, as_string));
+}
+
+bool Json::add_element(const char * element_name, const std::list<uint8_t> & element_value_list, bool as_string)
+{
+    return(nullptr != m_json_impl && m_json_impl->add_element(element_name, element_value_list, as_string));
+}
+
+bool Json::add_element(const char * element_name, const std::list<int16_t> & element_value_list, bool as_string)
+{
+    return(nullptr != m_json_impl && m_json_impl->add_element(element_name, element_value_list, as_string));
+}
+
+bool Json::add_element(const char * element_name, const std::list<uint16_t> & element_value_list, bool as_string)
 {
     return(nullptr != m_json_impl && m_json_impl->add_element(element_name, element_value_list, as_string));
 }
@@ -271,6 +351,26 @@ bool Json::set_element(const char * element_name, bool element_value, bool as_st
     return(nullptr != m_json_impl && m_json_impl->set_element(element_name, element_value, as_string));
 }
 
+bool Json::set_element(const char * element_name, int8_t element_value, bool as_string)
+{
+    return(nullptr != m_json_impl && m_json_impl->set_element(element_name, element_value, as_string));
+}
+
+bool Json::set_element(const char * element_name, uint8_t element_value, bool as_string)
+{
+    return(nullptr != m_json_impl && m_json_impl->set_element(element_name, element_value, as_string));
+}
+
+bool Json::set_element(const char * element_name, int16_t element_value, bool as_string)
+{
+    return(nullptr != m_json_impl && m_json_impl->set_element(element_name, element_value, as_string));
+}
+
+bool Json::set_element(const char * element_name, uint16_t element_value, bool as_string)
+{
+    return(nullptr != m_json_impl && m_json_impl->set_element(element_name, element_value, as_string));
+}
+
 bool Json::set_element(const char * element_name, int32_t element_value, bool as_string)
 {
     return(nullptr != m_json_impl && m_json_impl->set_element(element_name, element_value, as_string));
@@ -302,6 +402,26 @@ bool Json::set_element(const char * element_name, double element_value, bool as_
 }
 
 bool Json::set_element(const char * element_name, const std::list<bool> & element_value_list, bool as_string)
+{
+    return(nullptr != m_json_impl && m_json_impl->set_element(element_name, element_value_list, as_string));
+}
+
+bool Json::set_element(const char * element_name, const std::list<int8_t> & element_value_list, bool as_string)
+{
+    return(nullptr != m_json_impl && m_json_impl->set_element(element_name, element_value_list, as_string));
+}
+
+bool Json::set_element(const char * element_name, const std::list<uint8_t> & element_value_list, bool as_string)
+{
+    return(nullptr != m_json_impl && m_json_impl->set_element(element_name, element_value_list, as_string));
+}
+
+bool Json::set_element(const char * element_name, const std::list<int16_t> & element_value_list, bool as_string)
+{
+    return(nullptr != m_json_impl && m_json_impl->set_element(element_name, element_value_list, as_string));
+}
+
+bool Json::set_element(const char * element_name, const std::list<uint16_t> & element_value_list, bool as_string)
 {
     return(nullptr != m_json_impl && m_json_impl->set_element(element_name, element_value_list, as_string));
 }

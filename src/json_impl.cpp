@@ -324,6 +324,26 @@ bool JsonImpl::get_element(const char * element_name, bool & element_value)
     return(do_get_element(element_name, element_value));
 }
 
+bool JsonImpl::get_element(const char * element_name, int8_t & element_value)
+{
+    return(do_get_element(element_name, element_value));
+}
+
+bool JsonImpl::get_element(const char * element_name, uint8_t & element_value)
+{
+    return(do_get_element(element_name, element_value));
+}
+
+bool JsonImpl::get_element(const char * element_name, int16_t & element_value)
+{
+    return(do_get_element(element_name, element_value));
+}
+
+bool JsonImpl::get_element(const char * element_name, uint16_t & element_value)
+{
+    return(do_get_element(element_name, element_value));
+}
+
 bool JsonImpl::get_element(const char * element_name, int32_t & element_value)
 {
     return(do_get_element(element_name, element_value));
@@ -359,6 +379,26 @@ bool JsonImpl::get_element(const char * element_name, std::list<bool> & element_
     return(do_get_element(element_name, element_value_list));
 }
 
+bool JsonImpl::get_element(const char * element_name, std::list<int8_t> & element_value_list)
+{
+    return(do_get_element(element_name, element_value_list));
+}
+
+bool JsonImpl::get_element(const char * element_name, std::list<uint8_t> & element_value_list)
+{
+    return(do_get_element(element_name, element_value_list));
+}
+
+bool JsonImpl::get_element(const char * element_name, std::list<int16_t> & element_value_list)
+{
+    return(do_get_element(element_name, element_value_list));
+}
+
+bool JsonImpl::get_element(const char * element_name, std::list<uint16_t> & element_value_list)
+{
+    return(do_get_element(element_name, element_value_list));
+}
+
 bool JsonImpl::get_element(const char * element_name, std::list<int32_t> & element_value_list)
 {
     return(do_get_element(element_name, element_value_list));
@@ -390,6 +430,58 @@ bool JsonImpl::get_element(const char * element_name, std::list<double> & elemen
 }
 
 bool JsonImpl::add_element(const char * element_name, bool element_value, bool as_string)
+{
+    if (as_string)
+    {
+        std::string str_element_value;
+        return(stupid_type_to_string(element_value, str_element_value) && add_element(element_name, str_element_value));
+    }
+    else
+    {
+        return(do_add_element(element_name, element_value));
+    }
+}
+
+bool JsonImpl::add_element(const char * element_name, int8_t element_value, bool as_string)
+{
+    if (as_string)
+    {
+        std::string str_element_value;
+        return(stupid_type_to_string(element_value, str_element_value) && add_element(element_name, str_element_value));
+    }
+    else
+    {
+        return(do_add_element(element_name, element_value));
+    }
+}
+
+bool JsonImpl::add_element(const char * element_name, uint8_t element_value, bool as_string)
+{
+    if (as_string)
+    {
+        std::string str_element_value;
+        return(stupid_type_to_string(element_value, str_element_value) && add_element(element_name, str_element_value));
+    }
+    else
+    {
+        return(do_add_element(element_name, element_value));
+    }
+}
+
+bool JsonImpl::add_element(const char * element_name, int16_t element_value, bool as_string)
+{
+    if (as_string)
+    {
+        std::string str_element_value;
+        return(stupid_type_to_string(element_value, str_element_value) && add_element(element_name, str_element_value));
+    }
+    else
+    {
+        return(do_add_element(element_name, element_value));
+    }
+}
+
+bool JsonImpl::add_element(const char * element_name, uint16_t element_value, bool as_string)
 {
     if (as_string)
     {
@@ -493,6 +585,58 @@ bool JsonImpl::add_element(const char * element_name, const std::list<bool> & el
     }
 }
 
+bool JsonImpl::add_element(const char * element_name, const std::list<int8_t> & element_value_list, bool as_string)
+{
+    if (as_string)
+    {
+        std::list<std::string> str_element_value_list;
+        return(stupid_type_to_string(element_value_list, str_element_value_list) && add_element(element_name, str_element_value_list));
+    }
+    else
+    {
+        return(do_add_element(element_name, element_value_list));
+    }
+}
+
+bool JsonImpl::add_element(const char * element_name, const std::list<uint8_t> & element_value_list, bool as_string)
+{
+    if (as_string)
+    {
+        std::list<std::string> str_element_value_list;
+        return(stupid_type_to_string(element_value_list, str_element_value_list) && add_element(element_name, str_element_value_list));
+    }
+    else
+    {
+        return(do_add_element(element_name, element_value_list));
+    }
+}
+
+bool JsonImpl::add_element(const char * element_name, const std::list<int16_t> & element_value_list, bool as_string)
+{
+    if (as_string)
+    {
+        std::list<std::string> str_element_value_list;
+        return(stupid_type_to_string(element_value_list, str_element_value_list) && add_element(element_name, str_element_value_list));
+    }
+    else
+    {
+        return(do_add_element(element_name, element_value_list));
+    }
+}
+
+bool JsonImpl::add_element(const char * element_name, const std::list<uint16_t> & element_value_list, bool as_string)
+{
+    if (as_string)
+    {
+        std::list<std::string> str_element_value_list;
+        return(stupid_type_to_string(element_value_list, str_element_value_list) && add_element(element_name, str_element_value_list));
+    }
+    else
+    {
+        return(do_add_element(element_name, element_value_list));
+    }
+}
+
 bool JsonImpl::add_element(const char * element_name, const std::list<int32_t> & element_value_list, bool as_string)
 {
     if (as_string)
@@ -584,6 +728,58 @@ bool JsonImpl::set_element(const char * element_name, bool element_value, bool a
     }
 }
 
+bool JsonImpl::set_element(const char * element_name, int8_t element_value, bool as_string)
+{
+    if (as_string)
+    {
+        std::string str_element_value;
+        return(stupid_type_to_string(element_value, str_element_value) && set_element(element_name, str_element_value));
+    }
+    else
+    {
+        return(do_set_element(element_name, element_value));
+    }
+}
+
+bool JsonImpl::set_element(const char * element_name, uint8_t element_value, bool as_string)
+{
+    if (as_string)
+    {
+        std::string str_element_value;
+        return(stupid_type_to_string(element_value, str_element_value) && set_element(element_name, str_element_value));
+    }
+    else
+    {
+        return(do_set_element(element_name, element_value));
+    }
+}
+
+bool JsonImpl::set_element(const char * element_name, int16_t element_value, bool as_string)
+{
+    if (as_string)
+    {
+        std::string str_element_value;
+        return(stupid_type_to_string(element_value, str_element_value) && set_element(element_name, str_element_value));
+    }
+    else
+    {
+        return(do_set_element(element_name, element_value));
+    }
+}
+
+bool JsonImpl::set_element(const char * element_name, uint16_t element_value, bool as_string)
+{
+    if (as_string)
+    {
+        std::string str_element_value;
+        return(stupid_type_to_string(element_value, str_element_value) && set_element(element_name, str_element_value));
+    }
+    else
+    {
+        return(do_set_element(element_name, element_value));
+    }
+}
+
 bool JsonImpl::set_element(const char * element_name, int32_t element_value, bool as_string)
 {
     if (as_string)
@@ -663,6 +859,58 @@ bool JsonImpl::set_element(const char * element_name, double element_value, bool
 }
 
 bool JsonImpl::set_element(const char * element_name, const std::list<bool> & element_value_list, bool as_string)
+{
+    if (as_string)
+    {
+        std::list<std::string> str_element_value_list;
+        return(stupid_type_to_string(element_value_list, str_element_value_list) && set_element(element_name, str_element_value_list));
+    }
+    else
+    {
+        return(do_set_element(element_name, element_value_list));
+    }
+}
+
+bool JsonImpl::set_element(const char * element_name, const std::list<int8_t> & element_value_list, bool as_string)
+{
+    if (as_string)
+    {
+        std::list<std::string> str_element_value_list;
+        return(stupid_type_to_string(element_value_list, str_element_value_list) && set_element(element_name, str_element_value_list));
+    }
+    else
+    {
+        return(do_set_element(element_name, element_value_list));
+    }
+}
+
+bool JsonImpl::set_element(const char * element_name, const std::list<uint8_t> & element_value_list, bool as_string)
+{
+    if (as_string)
+    {
+        std::list<std::string> str_element_value_list;
+        return(stupid_type_to_string(element_value_list, str_element_value_list) && set_element(element_name, str_element_value_list));
+    }
+    else
+    {
+        return(do_set_element(element_name, element_value_list));
+    }
+}
+
+bool JsonImpl::set_element(const char * element_name, const std::list<int16_t> & element_value_list, bool as_string)
+{
+    if (as_string)
+    {
+        std::list<std::string> str_element_value_list;
+        return(stupid_type_to_string(element_value_list, str_element_value_list) && set_element(element_name, str_element_value_list));
+    }
+    else
+    {
+        return(do_set_element(element_name, element_value_list));
+    }
+}
+
+bool JsonImpl::set_element(const char * element_name, const std::list<uint16_t> & element_value_list, bool as_string)
 {
     if (as_string)
     {

@@ -81,6 +81,10 @@ public: /* write */
 
 public: /* overload */
     bool get_element(const char * element_name, bool & element_value);
+    bool get_element(const char * element_name, int8_t & element_value);
+    bool get_element(const char * element_name, uint8_t & element_value);
+    bool get_element(const char * element_name, int16_t & element_value);
+    bool get_element(const char * element_name, uint16_t & element_value);
     bool get_element(const char * element_name, int32_t & element_value);
     bool get_element(const char * element_name, uint32_t & element_value);
     bool get_element(const char * element_name, int64_t & element_value);
@@ -89,6 +93,10 @@ public: /* overload */
     bool get_element(const char * element_name, double & element_value);
 
     bool get_element(const char * element_name, std::list<bool> & element_value_list);
+    bool get_element(const char * element_name, std::list<int8_t> & element_value_list);
+    bool get_element(const char * element_name, std::list<uint8_t> & element_value_list);
+    bool get_element(const char * element_name, std::list<int16_t> & element_value_list);
+    bool get_element(const char * element_name, std::list<uint16_t> & element_value_list);
     bool get_element(const char * element_name, std::list<int32_t> & element_value_list);
     bool get_element(const char * element_name, std::list<uint32_t> & element_value_list);
     bool get_element(const char * element_name, std::list<int64_t> & element_value_list);
@@ -97,6 +105,10 @@ public: /* overload */
     bool get_element(const char * element_name, std::list<double> & element_value_list);
 
     bool add_element(const char * element_name, bool element_value, bool as_string = false);
+    bool add_element(const char * element_name, int8_t element_value, bool as_string = false);
+    bool add_element(const char * element_name, uint8_t element_value, bool as_string = false);
+    bool add_element(const char * element_name, int16_t element_value, bool as_string = false);
+    bool add_element(const char * element_name, uint16_t element_value, bool as_string = false);
     bool add_element(const char * element_name, int32_t element_value, bool as_string = false);
     bool add_element(const char * element_name, uint32_t element_value, bool as_string = false);
     bool add_element(const char * element_name, int64_t element_value, bool as_string = false);
@@ -105,6 +117,10 @@ public: /* overload */
     bool add_element(const char * element_name, double element_value, bool as_string = false);
 
     bool add_element(const char * element_name, const std::list<bool> & element_value_list, bool as_string = false);
+    bool add_element(const char * element_name, const std::list<int8_t> & element_value_list, bool as_string = false);
+    bool add_element(const char * element_name, const std::list<uint8_t> & element_value_list, bool as_string = false);
+    bool add_element(const char * element_name, const std::list<int16_t> & element_value_list, bool as_string = false);
+    bool add_element(const char * element_name, const std::list<uint16_t> & element_value_list, bool as_string = false);
     bool add_element(const char * element_name, const std::list<int32_t> & element_value_list, bool as_string = false);
     bool add_element(const char * element_name, const std::list<uint32_t> & element_value_list, bool as_string = false);
     bool add_element(const char * element_name, const std::list<int64_t> & element_value_list, bool as_string = false);
@@ -113,6 +129,10 @@ public: /* overload */
     bool add_element(const char * element_name, const std::list<double> & element_value_list, bool as_string = false);
 
     bool set_element(const char * element_name, bool element_value, bool as_string = false);
+    bool set_element(const char * element_name, int8_t element_value, bool as_string = false);
+    bool set_element(const char * element_name, uint8_t element_value, bool as_string = false);
+    bool set_element(const char * element_name, int16_t element_value, bool as_string = false);
+    bool set_element(const char * element_name, uint16_t element_value, bool as_string = false);
     bool set_element(const char * element_name, int32_t element_value, bool as_string = false);
     bool set_element(const char * element_name, uint32_t element_value, bool as_string = false);
     bool set_element(const char * element_name, int64_t element_value, bool as_string = false);
@@ -121,6 +141,10 @@ public: /* overload */
     bool set_element(const char * element_name, double element_value, bool as_string = false);
 
     bool set_element(const char * element_name, const std::list<bool> & element_value_list, bool as_string = false);
+    bool set_element(const char * element_name, const std::list<int8_t> & element_value_list, bool as_string = false);
+    bool set_element(const char * element_name, const std::list<uint8_t> & element_value_list, bool as_string = false);
+    bool set_element(const char * element_name, const std::list<int16_t> & element_value_list, bool as_string = false);
+    bool set_element(const char * element_name, const std::list<uint16_t> & element_value_list, bool as_string = false);
     bool set_element(const char * element_name, const std::list<int32_t> & element_value_list, bool as_string = false);
     bool set_element(const char * element_name, const std::list<uint32_t> & element_value_list, bool as_string = false);
     bool set_element(const char * element_name, const std::list<int64_t> & element_value_list, bool as_string = false);
