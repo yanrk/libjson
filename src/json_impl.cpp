@@ -188,9 +188,11 @@ bool JsonImpl::save(const char * file_name, bool format)
     {
         return(false);
     }
-    Json::FastWriter fast_writer;
-    Json::StyledWriter styled_writer;
-    const std::string document(format ? styled_writer.write(m_root_value) : fast_writer.write(m_root_value));
+    std::string document;
+    if (!get_document(document, format))
+    {
+        return(false);
+    }
     const std::string filename = utf8_to_ansi(file_name);
     std::ofstream ofs(filename.c_str(), std::ios::binary | std::ios::trunc);
     if (!ofs.is_open())
@@ -199,6 +201,14 @@ bool JsonImpl::save(const char * file_name, bool format)
     }
     ofs.write(document.c_str(), document.size());
     ofs.close();
+    return(true);
+}
+
+bool JsonImpl::get_document(std::string & document, bool format)
+{
+    Json::FastWriter fast_writer;
+    Json::StyledWriter styled_writer;
+    document = (format ? styled_writer.write(m_root_value) : fast_writer.write(m_root_value));
     return(true);
 }
 

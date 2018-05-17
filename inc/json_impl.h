@@ -102,6 +102,7 @@ public: /* read */
 
 public: /* write */
     bool save(const char * file_name, bool format = true);
+    bool get_document(std::string & document, bool format = true);
     bool add_element(size_t element_index);
     bool add_element(const char * element_name);
     bool add_element(const char * element_name, const char * element_value);

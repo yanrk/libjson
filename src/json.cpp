@@ -76,6 +76,11 @@ bool Json::save(const char * file_name, bool format)
     return(nullptr != m_json_impl && m_json_impl->save(file_name, format));
 }
 
+bool Json::get_document(std::string & document, bool format)
+{
+    return(nullptr != m_json_impl && m_json_impl->get_document(document, format));
+}
+
 bool Json::add_element(size_t element_index)
 {
     return(nullptr != m_json_impl && m_json_impl->add_element(element_index));
