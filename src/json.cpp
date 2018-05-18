@@ -81,6 +81,11 @@ bool Json::get_document(std::string & document, bool format)
     return(nullptr != m_json_impl && m_json_impl->get_document(document, format));
 }
 
+bool Json::add_array(const char * element_name)
+{
+    return(nullptr != m_json_impl && m_json_impl->add_array(element_name));
+}
+
 bool Json::add_element(size_t element_index)
 {
     return(nullptr != m_json_impl && m_json_impl->add_element(element_index));

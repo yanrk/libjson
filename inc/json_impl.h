@@ -103,6 +103,7 @@ public: /* read */
 public: /* write */
     bool save(const char * file_name, bool format = true);
     bool get_document(std::string & document, bool format = true);
+    bool add_array(const char * element_name);
     bool add_element(size_t element_index);
     bool add_element(const char * element_name);
     bool add_element(const char * element_name, const char * element_value);
@@ -237,9 +238,16 @@ bool JsonImpl::do_add_element(const char * element_name, const std::list<T> & el
     }
     Json::Value & json_parent = (m_child_values.empty() ? m_root_value : *m_child_values.back());
     Json::Value & json_child = json_parent[element_name];
-    for (typename std::list<T>::const_iterator iter = element_value_list.begin(); element_value_list.end() != iter; ++iter)
+    if (element_value_list.empty())
     {
-        json_child.append(*iter);
+        json_child.resize(0);
+    }
+    else
+    {
+        for (typename std::list<T>::const_iterator iter = element_value_list.begin(); element_value_list.end() != iter; ++iter)
+        {
+            json_child.append(*iter);
+        }
     }
     return(true);
 }
@@ -266,10 +274,17 @@ bool JsonImpl::do_set_element(const char * element_name, const std::list<T> & el
     }
     Json::Value & json_parent = (m_child_values.empty() ? m_root_value : *m_child_values.back());
     Json::Value & json_child = json_parent[element_name];
-    json_child.clear();
-    for (typename std::list<T>::const_iterator iter = element_value_list.begin(); element_value_list.end() != iter; ++iter)
+    if (element_value_list.empty())
     {
-        json_child.append(*iter);
+        json_child.resize(0);
+    }
+    else
+    {
+        json_child.clear();
+        for (typename std::list<T>::const_iterator iter = element_value_list.begin(); element_value_list.end() != iter; ++iter)
+        {
+            json_child.append(*iter);
+        }
     }
     return(true);
 }

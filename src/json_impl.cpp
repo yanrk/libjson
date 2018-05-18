@@ -212,6 +212,18 @@ bool JsonImpl::get_document(std::string & document, bool format)
     return(true);
 }
 
+bool JsonImpl::add_array(const char * element_name)
+{
+    if (nullptr == element_name)
+    {
+        return(false);
+    }
+    Json::Value & json_parent = (m_child_values.empty() ? m_root_value : *m_child_values.back());
+    Json::Value & json_child = json_parent[element_name];
+    json_child.resize(0);
+    return(true);
+}
+
 bool JsonImpl::add_element(size_t element_index)
 {
     Json::Value & json_parent = (m_child_values.empty() ? m_root_value : *m_child_values.back());
