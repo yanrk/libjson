@@ -1,3 +1,4 @@
+#include <cstring>
 #include <fstream>
 #include "json_impl.h"
 
