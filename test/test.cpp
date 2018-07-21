@@ -1,3 +1,5 @@
+#include <set>
+#include <algorithm>
 #include "json.h"
 
 using namespace Stupid::Base;
@@ -721,38 +723,225 @@ static bool test_write_all_types()
     return(true);
 }
 
-
-
-
-
-#include <sstream>
-bool stupid_string_to_type(const std::string & str, uint64_t & val)
+static bool test_sub_document()
 {
-    std::istringstream iss(str);
-    iss.setf(std::ios::boolalpha);
-    iss >> val;
-    return(!iss.fail());
-}
+    {
+        std::string address_to;
 
-bool stupid_type_to_string(uint64_t val, std::string & str)
-{
-    std::ostringstream oss;
-    oss.setf(std::ios::fixed, std::ios::floatfield);
-    oss.setf(std::ios::boolalpha);
-    oss << val;
-    str = oss.str();
+        {
+            Json json_address_writer;
+
+            if (!json_address_writer.add_element("room", "123"))
+            {
+                return(false);
+            }
+
+            if (!json_address_writer.add_element("road", "nanxin"))
+            {
+                return(false);
+            }
+
+            if (!json_address_writer.add_element("city", "shenzhen"))
+            {
+                return(false);
+            }
+
+            if (!json_address_writer.add_element("provinces", "guangdong"))
+            {
+                return(false);
+            }
+
+            if (!json_address_writer.get_document(address_to, false))
+            {
+                return(false);
+            }
+        }
+
+        Json json_writer;
+
+        if (!json_writer.add_element("name", "tony"))
+        {
+            return(false);
+        }
+
+        if (!json_writer.set_sub_document("address", address_to.c_str()))
+        {
+            return(false);
+        }
+
+        if (!json_writer.add_element("age", "7"))
+        {
+            return(false);
+        }
+
+        std::string personal_information;
+
+        if (!json_writer.get_document(personal_information))
+        {
+            return(false);
+        }
+
+        Json json_reader;
+
+        if (!json_reader.set_document(personal_information.c_str()))
+        {
+            return(false);
+        }
+
+        std::string name;
+
+        if (!json_reader.get_element("name", name))
+        {
+            return(false);
+        }
+
+        std::string address_from;
+
+        if (!json_reader.get_sub_document("address", address_from, false))
+        {
+            return(false);
+        }
+
+        int age = 0;
+
+        if (!json_reader.get_element("age", age))
+        {
+            return(false);
+        }
+
+        if (!json_reader.save_sub_document("address", "./address.txt", true))
+        {
+            return(false);
+        }
+
+        if (address_to != address_from)
+        {
+            return(false);
+        }
+    }
+
+    {
+        const char * students[] =
+        {
+            "{\"name\":\"tony\",\"age\":7}",
+            "{\"name\":\"mary\",\"age\":5}"
+        };
+
+        Json json_writer;
+
+        if (!json_writer.add_element("class", "2"))
+        {
+            return(false);
+        }
+
+        if (!json_writer.add_element("grade", "3"))
+        {
+            return(false);
+        }
+
+        if (!json_writer.add_array("students"))
+        {
+            return(false);
+        }
+
+        if (!json_writer.into_element("students"))
+        {
+            return(false);
+        }
+
+        for (size_t index = 0, count = sizeof(students) / sizeof(students[0]); index < count; ++index)
+        {
+            if (!json_writer.add_element(index))
+            {
+                return(false);
+            }
+
+            if (!json_writer.set_sub_document(index, students[index]))
+            {
+                return(false);
+            }
+        }
+
+        if (!json_writer.outof_element())
+        {
+            return(false);
+        }
+
+        if (!json_writer.add_element("teacher", "lee"))
+        {
+            return(false);
+        }
+
+        std::string class_information;
+
+        if (!json_writer.get_document(class_information))
+        {
+            return(false);
+        }
+
+        Json json_reader;
+
+        if (!json_reader.set_document(class_information.c_str()))
+        {
+            return(false);
+        }
+
+        std::string class_id;
+
+        if (!json_reader.get_element("class", class_id))
+        {
+            return(false);
+        }
+
+        std::string grade_id;
+
+        if (!json_reader.get_element("grade", grade_id))
+        {
+            return(false);
+        }
+
+        if (!json_writer.into_element("students"))
+        {
+            return(false);
+        }
+
+        for (size_t index = 0, count = json_writer.get_size(); index < count; ++index)
+        {
+            std::string student_from;
+            if (!json_writer.get_sub_document(index, student_from, false))
+            {
+                return(false);
+            }
+
+            student_from.erase(std::find(student_from.begin(), student_from.end(), '\n'), student_from.end());
+            const std::string student_to(students[index]);
+
+            std::set<char> set_from(student_from.begin(), student_from.end());
+            std::set<char> set_to(student_to.begin(), student_to.end());
+            if (set_from != set_to)
+            {
+                return(false);
+            }
+        }
+
+        if (!json_writer.outof_element())
+        {
+            return(false);
+        }
+
+        std::string teacher_name;
+
+        if (!json_reader.get_element("teacher", teacher_name))
+        {
+            return(false);
+        }
+    }
+
     return(true);
 }
 
 int main(int, char * [])
 {
-    uint64_t a = 18222222222222222222UI64;
-    std::string b;
-    if (!stupid_type_to_string(a, b))
-    {
-        return(false);
-    }
-
     if (!test_read())
     {
         return(1);

@@ -76,9 +76,39 @@ bool Json::save(const char * file_name, bool format)
     return(nullptr != m_json_impl && m_json_impl->save(file_name, format));
 }
 
+bool Json::save_sub_document(const char * element_name, const char * file_name, bool format)
+{
+    return(nullptr != m_json_impl && m_json_impl->save_sub_document(element_name, file_name, format));
+}
+
+bool Json::save_sub_document(size_t element_index, const char * file_name, bool format)
+{
+    return(nullptr != m_json_impl && m_json_impl->save_sub_document(element_index, file_name, format));
+}
+
+bool Json::set_sub_document(const char * element_name, const char * sub_document)
+{
+    return(nullptr != m_json_impl && m_json_impl->set_sub_document(element_name, sub_document));
+}
+
+bool Json::set_sub_document(size_t element_index, const char * sub_document)
+{
+    return(nullptr != m_json_impl && m_json_impl->set_sub_document(element_index, sub_document));
+}
+
 bool Json::get_document(std::string & document, bool format)
 {
     return(nullptr != m_json_impl && m_json_impl->get_document(document, format));
+}
+
+bool Json::get_sub_document(const char * element_name, std::string & sub_document, bool format)
+{
+    return(nullptr != m_json_impl && m_json_impl->get_sub_document(element_name, sub_document, format));
+}
+
+bool Json::get_sub_document(size_t element_index, std::string & sub_document, bool format)
+{
+    return(nullptr != m_json_impl && m_json_impl->get_sub_document(element_index, sub_document, format));
 }
 
 bool Json::add_array(const char * element_name)

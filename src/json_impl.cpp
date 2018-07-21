@@ -205,11 +205,133 @@ bool JsonImpl::save(const char * file_name, bool format)
     return(true);
 }
 
+bool JsonImpl::save_sub_document(const char * element_name, const char * file_name, bool format)
+{
+    if (nullptr == file_name)
+    {
+        return(false);
+    }
+    std::string sub_document;
+    if (!get_sub_document(element_name, sub_document, format))
+    {
+        return(false);
+    }
+    const std::string filename = utf8_to_ansi(file_name);
+    std::ofstream ofs(filename.c_str(), std::ios::binary | std::ios::trunc);
+    if (!ofs.is_open())
+    {
+        return(false);
+    }
+    ofs.write(sub_document.c_str(), sub_document.size());
+    ofs.close();
+    return(true);
+}
+
+bool JsonImpl::save_sub_document(size_t element_index, const char * file_name, bool format)
+{
+    if (nullptr == file_name)
+    {
+        return(false);
+    }
+    std::string sub_document;
+    if (!get_sub_document(element_index, sub_document, format))
+    {
+        return(false);
+    }
+    const std::string filename = utf8_to_ansi(file_name);
+    std::ofstream ofs(filename.c_str(), std::ios::binary | std::ios::trunc);
+    if (!ofs.is_open())
+    {
+        return(false);
+    }
+    ofs.write(sub_document.c_str(), sub_document.size());
+    ofs.close();
+    return(true);
+}
+
 bool JsonImpl::get_document(std::string & document, bool format)
 {
     Json::FastWriter fast_writer;
     Json::StyledWriter styled_writer;
     document = (format ? styled_writer.write(m_root_value) : fast_writer.write(m_root_value));
+    return(true);
+}
+
+bool JsonImpl::get_sub_document(const char * element_name, std::string & sub_document, bool format)
+{
+    if (nullptr == element_name)
+    {
+        return(false);
+    }
+    const Json::Value & json_parent = (m_child_values.empty() ? m_root_value : *m_child_values.back());
+    if (!json_parent.isMember(element_name))
+    {
+        return(false);
+    }
+    const Json::Value & json_child = json_parent[element_name];
+    Json::FastWriter fast_writer;
+    Json::StyledWriter styled_writer;
+    sub_document = (format ? styled_writer.write(json_child) : fast_writer.write(json_child));
+    return(true);
+}
+
+bool JsonImpl::get_sub_document(size_t element_index, std::string & sub_document, bool format)
+{
+    Json::Value & json_parent = (m_child_values.empty() ? m_root_value : *m_child_values.back());
+    if (!json_parent.isArray() || element_index >= json_parent.size())
+    {
+        return(false);
+    }
+    const Json::Value & json_child = json_parent[static_cast<Json::Value::ArrayIndex>(element_index)];
+    Json::FastWriter fast_writer;
+    Json::StyledWriter styled_writer;
+    sub_document = (format ? styled_writer.write(json_child) : fast_writer.write(json_child));
+    return(true);
+}
+
+bool JsonImpl::set_sub_document(const char * element_name, const char * sub_document)
+{
+    if (nullptr == sub_document)
+    {
+        return(false);
+    }
+    Json::Reader reader;
+    Json::Value json_child;
+    if (!reader.parse(sub_document, json_child, false))
+    {
+        return(false);
+    }
+    if (nullptr == element_name)
+    {
+        return(false);
+    }
+    Json::Value & json_parent = (m_child_values.empty() ? m_root_value : *m_child_values.back());
+    json_parent[element_name] = json_child;
+    return(true);
+}
+
+bool JsonImpl::set_sub_document(size_t element_index, const char * sub_document)
+{
+    if (nullptr == sub_document)
+    {
+        return(false);
+    }
+    Json::Reader reader;
+    Json::Value json_child;
+    if (!reader.parse(sub_document, json_child, false))
+    {
+        return(false);
+    }
+    Json::Value & json_parent = (m_child_values.empty() ? m_root_value : *m_child_values.back());
+    if (!json_parent.isNull() && !json_parent.isArray())
+    {
+        return(false);
+    }
+    if (element_index > json_parent.size())
+    {
+        return(false);
+    }
+    json_parent[static_cast<Json::Value::ArrayIndex>(element_index)] = json_child;
     return(true);
 }
 
