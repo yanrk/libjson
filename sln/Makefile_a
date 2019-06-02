@@ -37,7 +37,7 @@ libjson_objects    = $(libjson_source:$(project_home)%.cpp=$(object_dir)%.o)
 
 
 # output librarys
-output_lib         = $(bin_dir)/liblibjson.a
+output_lib         = $(bin_dir)/libjson.a
 
 
 

@@ -46,7 +46,7 @@ depend_libs        = $(jsoncpp_libs)
 
 
 # output librarys
-output_lib         = $(bin_dir)/liblibjson.so
+output_lib         = $(bin_dir)/libjson.so
 
 
 
